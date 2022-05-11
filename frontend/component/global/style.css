@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Bebas Neue", cursive;
+}
+
+body {
+  background-color: #343a40;
+}
+
+.Header-Center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Fredoka One', cursive;
+}
