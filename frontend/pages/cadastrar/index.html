@@ -28,6 +28,11 @@
     <div class="Header-Center">
       <div id="cardRegister">
         <h2>SIGN UP</h2>
+        <div class="center">
+          <div class="card-information">
+            <ul class="cumprimentos"></ul>
+          </div>
+        </div>
         <div id="form">
           <div class="row">
             <div class="FieldBox">
@@ -35,26 +40,28 @@
               <input type="file" id="login" />
             </div>
             <div class="FieldBox">
-              <span>Nome</span>
-              <input type="text" id="login" />
-            </div>
-            <div class="FieldBox">
-              <span>Sobrenome</span>
-              <input type="text" id="login" />
+              <span>Nickname</span>
+              <input
+                type="text"
+                onclick="verify(1)"
+                onkeyup="verify(1)"
+                autocomplete="off"
+                id="campo_nome"
+              />
             </div>
           </div>
           <div class="row">
             <div class="FieldBox">
               <span>Login</span>
-              <input type="text" id="login" />
+              <input type="text" autocomplete="off" id="login" />
             </div>
             <div class="FieldBox">
               <span>Senha</span>
-              <input type="text" id="senha" />
+              <input type="password" autocomplete="off" id="senha" />
             </div>
             <div class="FieldBox">
               <span>Confirmar Senha</span>
-              <input type="text" id="senha" />
+              <input type="password" id="senha" />
             </div>
           </div>
           <button>Cadastrar-se</button>
@@ -65,4 +72,4 @@
   </body>
 </html>
 <script src="../../component/global/index.js"></script>
-<script src="../../component/global/index.js   "></script>
+<script src="./script.js"></script>
