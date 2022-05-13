@@ -4,6 +4,7 @@
   margin-top: 5%;
   width: 800px;
   border-radius: 10px;
+  padding: 20px;
   box-shadow: 2px 2px 5px #489fb5;
   background-color: #fafafa;
 }
@@ -19,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 3%;
   justify-content: center;
 }
 
@@ -39,9 +40,33 @@
   color: #495057;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+.card-information {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  width: 400px;
+  height: 100px;
+}
+
+.cumprimento_active {
+  text-decoration: line-through;
+  color: #489fb5;
+}
+.cumprimentos {
+  color: #f94144;
+}
+
 #cardRegister input {
   text-align: center;
   font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
   height: 40px;
   width: 250px;
   border-radius: 5px;
