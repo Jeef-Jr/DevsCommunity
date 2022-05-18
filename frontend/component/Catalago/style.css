@@ -1,10 +1,8 @@
 #catalago {
   display: flex;
-  position: relative;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  bottom: 200px;
   height: 500px;
 }
 
