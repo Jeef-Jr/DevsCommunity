@@ -4,35 +4,46 @@ function verify(campo) {
 
   switch (campo) {
     case 1: {
-      let campo_nome = document.querySelector("#campo_nome");
-      const unic_c = "<li>O Nickname deve ser único.</li>";
-      const unic =
-        "<li class='cumprimento_active'> O Nickname deve ser único.</li>";
+      let campo_nickname = document.querySelector("#campo_nickname");
+
       const tres_caracter_c =
         "<li class='cumprimento_active'>O Nickname deve conter no mínimo 3 caractéres.</li>";
       const tres_caracter =
         "<li>O Nickname deve conter no mínimo 3 caractéres.</li>";
-      const caract_especial =
-        "<li>O Nickname deve conter um caractér especial.</li>";
-      const caract_especial_c =
-        "<li class='cumprimento_active'>O Nickname deve conter um caractér especial.</li>";
 
-      if (campo_nome.value.length >= 3) {
+      if (campo_nickname.value.length >= 3) {
         cumprimentos.innerHTML = `
-                ${unic_c}
                 ${tres_caracter_c}
-                ${caract_especial}
             `;
       } else {
         cumprimentos.innerHTML = `
-                ${unic_c}
                 ${tres_caracter}
-                ${caract_especial}
             `;
       }
       break;
     }
     case 2: {
+      let campo_login = document.querySelector("#campo_login");
+
+      const tres_caracter_c =
+        "<li class='cumprimento_active'>O Login deve conter no mínimo 3 caractéres.</li>";
+      const tres_caracter =
+        "<li>O Login deve conter no mínimo 3 caractéres.</li>";
+      const login_uni_c =
+        "<li class='cumprimento_active'>O Login deverá ser único.</li>";
+      const login_uni = "<li>O Login deverá ser único.</li>";
+
+      if (campo_login.value.length >= 3) {
+        cumprimentos.innerHTML = `
+                ${tres_caracter_c}
+                ${login_uni}
+            `;
+      } else {
+        cumprimentos.innerHTML = `
+                ${tres_caracter}
+                ${login_uni}
+            `;
+      }
       break;
     }
   }
