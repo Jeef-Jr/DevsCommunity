@@ -1,27 +1,29 @@
-process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-// process.env.AMBIENTE_PROCESSO = "producao";
-
-var express = require("express");
-var cors = require("cors");
-var path = require("path");
-var PORTA = 3333;
-
-var app = express();
-
-var indexRouter = require("./backend/routes/index");
-var usuarioRouter = require("./backend/routes/usuarios");
+const express = require("express");
+const app = express();
+const http = require("http");
+const path = require("path");
+const cors = require("cors");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "frontend")));
 
+const indexRouter = require("./backend/routes/index");
+
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("/usuarios", usuarioRouter);
 
-app.listen(PORTA, function () {
-  console.log(
-    `Servidor do seu sistema já está rodando... Acesse o caminho a seguir para visualizar: http://localhost:${PORTA}'`
-  );
+io.on("connection", (socket) => {
+  console.log(`socket connection ${socket.id}`);
+  socket.on("chat message", (msg, user) => {
+    io.emit("chat message", msg, user);
+  });
+});
+
+server.listen(3333, () => {
+  console.log("listening on *:3333");
 });
