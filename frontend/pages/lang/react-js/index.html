@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../../component/global/style.css" />
+    <link rel="stylesheet" href="../../../component/NavBar/style.css" />
+    <link rel="stylesheet" href="../../../component/Header/style.css" />
+    <link rel="stylesheet" href="../../../component/Catalago/style.css" />
+    <title>Devs Community</title>
+  </head>
+  <body>
+    <div id="NavBar">
+      <div>
+        <h1>Devs Community</h1>
+      </div>
+      <div>
+        <a href="../../../index.html">Ínicio</a>
+        <a href="../../../pages/login/index.html">Logar-se</a>
+      </div>
+    </div>
+
+    <div class="body-lang">
+      <div class="conteudo">
+        <div class="row center title">
+          <img class="logo" src="../../../assets/reactjs.jpg" alt="" />
+          <div class="column">
+            <h1>REACT</h1>
+            <div class="row">
+              <div class="column center">
+                <span class="number">0</span>
+                <a class="actions"
+                  ><img
+                    class="icons"
+                    src="../../../assets/icons/coracao-0.png"
+                    alt=""
+                /></a>
+              </div>
+              <div class="column center">
+                <span class="number">0</span>
+                <a class="actions"
+                  ><img
+                    class="icons-off"
+                    src="../../../assets/icons/olho-aberto.png"
+                    alt=""
+                /></a>
+              </div>
+            </div>
+            <div class="menu">
+              <button>Documentação</button>
+            </div>
+          </div>
+        </div>
+        <div class="grafic">
+          <div>
+            <canvas
+              id="myChart"
+              style="
+                background-color: #edf6f9;
+                margin-top: 20px;
+                padding: 10px;
+                border-radius: 10px;
+              "
+              width="300"
+              height="100"
+            ></canvas>
+          </div>
+        </div>
+        <div class="menu">
+          <span>Ticket's</span>
+          <button>Novo Ticket</button>
+          <button>Meus Ticket</button>
+          <button>5 / 5</button>
+        </div>
+        <div class="tickets">
+          <div class="ticket"></div>
+          <div class="ticket"></div>
+          <div class="ticket"></div>
+          <div class="ticket"></div>
+          <div class="ticket"></div>
+        </div>
+        <div class="center-chat">
+          <div class="chat">
+            <div class="icon-white">
+              <img src="../../../assets/icons/bate-papo.png" alt="" />
+              <h1>Bate-Papo</h1>
+            </div>
+            <ul id="messages"></ul>
+            <form id="form">
+              <input id="input1" autocomplete="off" placeholder="Username" />
+              <input id="input" autocomplete="off" /><button>Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+    <script>
+      var socket = io("http://localhost:3333");
+
+      var messages = document.getElementById("messages");
+      var form = document.getElementById("form");
+      var input = document.getElementById("input");
+      var username = document.getElementById("input1");
+
+      var objDiv = document.getElementById("messages");
+      objDiv.scrollTop = objDiv.scrollHeight;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit("chat message", input.value, username.value);
+          input.value = "";
+        }
+      });
+
+      socket.on("chat message", function (msg, user) {
+        var item = document.createElement("li");
+
+        item.innerHTML = `
+        <img class="icon_user" src="../../../assets/User_icon.png" alt="">
+        ${user} |
+        ${msg}`;
+        messages.appendChild(item);
+      });
+    </script>
+  </body>
+</html>
+<script src="../../../component/global/index.js"></script>
+<script src="../../../component/Catalago/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./script.js"></script>

@@ -17,18 +17,30 @@ function listarCard() {
     "Node JS",
     "PHP 7",
     "Java",
-    "Pyton",
+    "Python",
     "Flutter",
     "Dart",
   ];
 
+  let url = [
+    "react-js",
+    "node-js",
+    "php-7",
+    "java",
+    "python",
+    "flutter",
+    "dart",
+  ];
+
   for (var i = 0; i < number; i++) {
     cat.innerHTML += `
-    <div class="cards">
-        <h3>${categoria[i]}</h3>
-        <div class="card-framework">
-            <img class="img-cards" src='${imgs[i]}'/>
-        </div>
-    </div>`;
+    <a href="./pages/lang/${url[i]}/index.html"> 
+      <div class="cards">
+          <h3>${categoria[i]}</h3>
+          <div class="card-framework">
+              <img class="img-cards" src='${imgs[i]}'/>
+          </div>
+      </div>
+    </a>`;
   }
 }

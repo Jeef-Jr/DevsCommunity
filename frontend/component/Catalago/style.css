@@ -8,6 +8,10 @@
   height: 500px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .cards {
   text-align: center;
   color: white;
