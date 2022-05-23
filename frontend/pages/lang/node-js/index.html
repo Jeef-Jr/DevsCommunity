@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../../component/NavBar/style.css" />
     <link rel="stylesheet" href="../../../component/Header/style.css" />
     <link rel="stylesheet" href="../../../component/Catalago/style.css" />
+    <link rel="stylesheet" href="../../../component/Chat/style.css" />
     <title>Devs Community</title>
   </head>
   <body>
@@ -97,35 +98,7 @@
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
-    <script>
-      var socket = io("http://localhost:3333");
-
-      var messages = document.getElementById("messages");
-      var form = document.getElementById("form");
-      var input = document.getElementById("input");
-      var username = document.getElementById("input1");
-
-      var objDiv = document.getElementById("messages");
-      objDiv.scrollTop = objDiv.scrollHeight;
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit("chat message", input.value, username.value);
-          input.value = "";
-        }
-      });
-
-      socket.on("chat message", function (msg, user) {
-        var item = document.createElement("li");
-
-        item.innerHTML = `
-        <img class="icon_user" src="../../../assets/User_icon.png" alt="">
-        ${user} |
-        ${msg}`;
-        messages.appendChild(item);
-      });
-    </script>
+    <script src="../../../component/Chat/script.js"></script>
   </body>
 </html>
 <script src="../../../component/global/index.js"></script>

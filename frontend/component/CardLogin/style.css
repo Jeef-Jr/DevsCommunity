@@ -1,80 +1,77 @@
-#cardLogin{
-    display: flex;
-    flex-direction: column;
-        margin-top: 5%;
-    width: 400px;
-    height: 400px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px #489fb5;
-    background-color: #fafafa;
+#cardLogin {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #489fb5;
+  background-color: #fafafa;
 }
 
 #form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10%;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+  justify-content: center;
 }
 
 #cardLogin h2 {
-    color: #489fb5;
-    font-size: 40px;
-    margin-left: 20px;
-    margin-top: 10px;
-    text-decoration: underline;
+  color: #489fb5;
+  font-size: 40px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-decoration: underline;
 }
 
-.FieldBox{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 30px;
-    color: #495057;
+.FieldBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 30px;
+  color: #495057;
 }
 
 #cardLogin input {
-    text-align: center;
-    font-size: 20px;
-    height: 40px;
-    width: 200px;
-    border-radius: 5px;
-    border: 2px solid #adacac;
-    transition: all .2s;
-
+  text-align: center;
+  font-size: 20px;
+  height: 40px;
+  width: 200px;
+  border-radius: 5px;
+  border: 2px solid #adacac;
+  transition: all 0.2s;
 }
 
 #cardLogin input:focus {
-    border: 2px solid #489fb5;
-    outline: 0;
+  border: 2px solid #489fb5;
+  outline: 0;
 }
 
 #form button {
-    margin-top: 20px;
-    cursor: pointer;
-    width: 200px;
-    height: 40px;
-    background-color: #489fb5;
-    color: white;
-    font-size: 25px;
-    border: none;
-    transition: all 0.1s;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 200px;
+  height: 40px;
+  background-color: #489fb5;
+  color: white;
+  font-size: 25px;
+  border: none;
+  transition: all 0.1s;
 }
 
 #form button:hover {
-    background-color: white;
-    color: #489fb5;
-    border: 2px solid #489fb5;
-
-
+  background-color: white;
+  color: #489fb5;
+  border: 2px solid #489fb5;
 }
 
 #form a {
-    text-decoration: none;
-    margin-top: 10px;
-    color: #489fb5;
+  text-decoration: none;
+  margin-top: 10px;
+  color: #489fb5;
 }
 
 #form a u {
-    color: #225d6c;
+  color: #225d6c;
 }
