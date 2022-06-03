@@ -1,3 +1,5 @@
+process.env.AMBIENTE_PROCESSO = "desenvolvimento";
+
 const express = require("express");
 const app = express();
 const http = require("http");
@@ -9,13 +11,15 @@ const io = new Server(server);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(path.join(__dirname, "public")));
 
-const indexRouter = require("./backend/routes/index");
+const indexRouter = require("./src/routes/index");
+const usuariosRouter = require("./src/routes/usuarios");
 
 app.use(cors());
 
 app.use("/", indexRouter);
+app.use("/users", usuariosRouter);
 
 io.on("connection", (socket) => {
   console.log(`socket connection ${socket.id}`);
