@@ -27,8 +27,8 @@
       <div class="conteudo">
         <div class="row center title">
           <img class="logo" src="../../../assets/reactjs.jpg" alt="" />
+          <h1>REACT</h1>
           <div class="column">
-            <h1>REACT</h1>
             <div class="row">
               <div class="column center">
                 <span class="number">0</span>
@@ -70,29 +70,39 @@
           </div>
         </div>
         <div class="menu">
-          <span>Ticket's</span>
-          <button>Novo Ticket</button>
-          <button>Meus Ticket</button>
-          <button>5 / 5</button>
+          <button class="button-active">Informações</button>
+          <button>Comunidade</button>
         </div>
-        <div class="tickets">
-          <div class="ticket"></div>
-          <div class="ticket"></div>
-          <div class="ticket"></div>
-          <div class="ticket"></div>
-          <div class="ticket"></div>
+        <div id="area_information">
+          <p>
+                
+          </p>
         </div>
-        <div class="center-chat">
-          <div class="chat">
-            <div class="icon-white">
-              <img src="../../../assets/icons/bate-papo.png" alt="" />
-              <h1>Bate-Papo</h1>
+        <div id="area_ticket">
+          <div class="menu">
+            <span>Ticket's</span>
+            <button>Novo Ticket</button>
+            <button>Meus Ticket</button>
+          </div>
+          <div class="tickets">
+            <div class="ticket"></div>
+            <div class="ticket"></div>
+            <div class="ticket"></div>
+            <div class="ticket"></div>
+            <div class="ticket"></div>
+          </div>
+          <div class="center-chat">
+            <div class="chat">
+              <div class="icon-white">
+                <img src="../../../assets/icons/bate-papo.png" alt="" />
+                <h1>Bate-Papo</h1>
+              </div>
+              <ul id="messages"></ul>
+              <form id="form">
+                <input id="input1" autocomplete="off" placeholder="Username" />
+                <input id="input" autocomplete="off" /><button>Enviar</button>
+              </form>
             </div>
-            <ul id="messages"></ul>
-            <form id="form">
-              <input id="input1" autocomplete="off" placeholder="Username" />
-              <input id="input" autocomplete="off" /><button>Enviar</button>
-            </form>
           </div>
         </div>
       </div>
