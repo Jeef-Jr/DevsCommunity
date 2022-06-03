@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../component/Header/style.css" />
     <link rel="stylesheet" href="../../../component/Catalago/style.css" />
     <link rel="stylesheet" href="../../../component/Chat/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
     <title>Devs Community</title>
   </head>
   <body>
@@ -32,34 +34,24 @@
             <div class="row">
               <div class="column center">
                 <span class="number">0</span>
-                <a class="actions"
-                  ><img
-                    class="icons"
-                    src="../../../assets/icons/coracao-0.png"
-                    alt=""
-                /></a>
+                <a class=""><i class="fa-solid fa-heart actions"></i></a>
               </div>
               <div class="column center">
                 <span class="number">0</span>
-                <a class="actions"
-                  ><img
-                    class="icons-off"
-                    src="../../../assets/icons/olho-aberto.png"
-                    alt=""
-                /></a>
+                <a><i class="fa-solid fa-eye"></i></a>
               </div>
             </div>
             <div class="menu">
-              <button>Documentação</button>
+              <button><i class="fa-solid fa-book"></i> Documentação</button>
             </div>
           </div>
         </div>
         <div class="grafic">
           <div>
             <canvas
-              id="myChart"
+            id="myChart"
               style="
-                background-color: #edf6f9;
+              background-color: #edf6f9;
                 margin-top: 20px;
                 padding: 10px;
                 border-radius: 10px;
@@ -70,8 +62,8 @@
           </div>
         </div>
         <div class="menu">
-          <button class="button-active">Informações</button>
-          <button>Comunidade</button>
+          <button id="btn-informations" class="button-active" onclick="mostrarComunidade(1)"><i class="fa-solid fa-circle-info"></i> Informações</button>
+          <button id="btn-comunidade"onclick="mostrarComunidade(2)"><i class="fa-solid fa-users"></i> Comunidade</button>
         </div>
         <div id="area_information">
           <p>
@@ -80,37 +72,44 @@
         </div>
         <div id="area_ticket">
           <div class="menu">
-            <span>Ticket's</span>
-            <button>Novo Ticket</button>
-            <button>Meus Ticket</button>
+            <button class="button-active" onclick="mostrarBtpTicket(1)" id="NewTicket"><i class="fa-solid fa-ticket"></i> Novo Ticket</button>
+            <button id="MyTickets" onclick="mostrarBtpTicket(2)"><i class="fa-solid fa-ticket"></i> Meus Ticket</button>
+            <button id="BatePapo" onclick="mostrarBtpTicket(3)"><i class="fa-solid fa-comments"></i> BATE PAPO</button>
           </div>
-          <div class="tickets">
-            <div class="ticket"></div>
-            <div class="ticket"></div>
-            <div class="ticket"></div>
-            <div class="ticket"></div>
-            <div class="ticket"></div>
-          </div>
-          <div class="center-chat">
-            <div class="chat">
-              <div class="icon-white">
-                <img src="../../../assets/icons/bate-papo.png" alt="" />
-                <h1>Bate-Papo</h1>
-              </div>
-              <ul id="messages"></ul>
-              <form id="form">
-                <input id="input1" autocomplete="off" placeholder="Username" />
-                <input id="input" autocomplete="off" /><button>Enviar</button>
-              </form>
+          <div id="tickets">
+            <div class="tickets" >
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
+                <div class="ticket"></div>
             </div>
           </div>
-        </div>
+            <div class="center-chat" id="chatLang">
+              <div class="chat">
+                <div class="icon-white">
+                  <img src="../../../assets/icons/bate-papo.png" alt="" />
+                  <h1>Bate-Papo</h1>
+                </div>
+                <ul id="messages"></ul>
+                <form id="form">
+                  <input id="input1" autocomplete="off" placeholder="Username" />
+                  <input id="input" autocomplete="off" /><button>Enviar</button>
+                </form>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
     <script src="../../../component/Chat/script.js"></script>
   </body>
-</html>
+  </html>
 <script src="../../../component/global/index.js"></script>
 <script src="../../../component/Catalago/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
