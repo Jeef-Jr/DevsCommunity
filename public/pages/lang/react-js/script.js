@@ -48,14 +48,14 @@ function mostrarComunidade(n){
 }
 
 
-function mostrarBtpTicket(k){
+function mostrarBtpTicket(key){
   const chatLang = document.querySelector("#chatLang");
   const tickets = document.querySelector("#tickets");
 
   const NewTicket = document.querySelector("#NewTicket");
   const ButtonBtp = document.querySelector("#BatePapo");
 
-  switch(k){
+  switch(key){
     case 1: {
       chatLang.style.display = "none";
       tickets.style.display = "flex";
