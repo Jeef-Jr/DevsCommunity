@@ -4,10 +4,24 @@
 
 .title2 {
   text-align: center;
-  font-size: 40px;
+  font-size: 70px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .divsoria {
   height: 5px;
   background-color: white;
+}
+
+.grafico {
+  width: 700px;
+  padding: 20px;
+  margin: 10px;
+  background-color: #ced4da;
 }
