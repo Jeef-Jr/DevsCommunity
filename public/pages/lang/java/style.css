@@ -8,14 +8,15 @@
   display: flex;
   flex-direction: column;
   width: 1280px;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 
 .title {
-  font-size: 100px;
+  font-size: 50px;
   color: white;
 }
 .actions {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
 }
@@ -24,6 +25,7 @@
   cursor: pointer;
   width: 50px;
   padding: 10px;
+  margin: 10px;
   border: 5px solid #6c757d;
   border-radius: 20px;
   background-color: #edf6f9;
@@ -32,6 +34,7 @@
 .icons-off {
   width: 50px;
   padding: 10px;
+  margin: 10px;
   border: 5px solid #6c757d;
   border-radius: 20px;
   background-color: #edf6f9;
@@ -59,7 +62,7 @@
 }
 
 .logo {
-  width: 300px;
+  width: 200px;
 }
 
 .menu {
@@ -69,7 +72,7 @@
 }
 
 .menu span {
-  font-size: 60px;
+  font-size: 40px;
   margin-right: 40px;
   color: white;
   text-decoration: underline;
@@ -80,16 +83,24 @@
   font-size: 30px;
   padding: 10px;
   border-radius: 10px;
-  background-color: transparent;
-  color: white;
-  border: 5px solid white;
+  color: #6c757d;
+  border: 2px solid white;
   margin: 3px;
   transition: all 0.2s;
 }
 
 .menu button:hover {
-  color: #ced4da;
-  border: 5px solid #ced4da;
+  background-color: #6c757d;
+  color: white;
+}
+
+.button-active {
+  background-color: #6c757d;
+  color: white !important;
+}
+
+#area_ticket {
+  display: none;
 }
 
 .grafic {
@@ -105,107 +116,48 @@
 .tickets {
   margin-top: 20px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
   align-items: center;
 }
 
 .ticket {
-  margin: 10px 0px 10px 0px;
+  margin: 10px;
   background-color: #ced4da;
-  width: 80%;
+  width: 300px;
   height: 100px;
   border-radius: 10px;
 }
 
-.center-chat {
+.column {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
-.chat {
+#area_ticket {
   margin-top: 20px;
-  width: 80%;
+  border: 4px solid white;
+  border-radius: 10px;
+  background-color: #adb5bd;
+  margin: 30px;
 }
 
-#form {
-  background: rgba(0, 0, 0, 0.15);
-  padding: 0.2rem;
-  margin-bottom: 20px;
-  display: flex;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-}
-#input {
-  border: none;
-  padding: 20px;
-  flex-grow: 1;
-  height: 10px;
-  font-size: 30px;
-  border-radius: 2rem;
-  margin: 0.25rem;
-}
-
-.icon-white {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 10px 0 0;
-  border: 10px solid white;
-  background-color: #6c757d;
+#area_information {
+  margin-top: 20px;
+  background-color: #282c34;
   color: white;
-  padding: 10px;
+  font-size: 30px;
+  border-radius: 10px;
+  margin: 30px;
 }
 
-.icon-white h1 {
-  margin-left: 20px;
-  font-size: 50px;
+#area_information p {
+  margin: 20px;
 }
 
-.icon-white img {
-  width: 50px;
-}
-
-#input1 {
-  font-size: 20px;
-  text-align: center;
-}
-
-#input1:focus {
-  outline: none;
-}
-
-#input:focus {
-  outline: none;
-}
-#form > button {
-  cursor: pointer;
-  background: rgb(182, 182, 182);
-  border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
-  width: 100px;
-  font-size: 20px;
-  border-radius: 3px;
-  outline: none;
-  color: rgb(71, 71, 71);
-}
-
-.icon_user {
-  width: 40px;
-}
-
-#messages {
-  height: 300px;
-  list-style-type: none;
-  font-size: 25px;
-  background-color: #f2f3f4;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-}
-#messages > li {
-  padding: 0.5rem 1rem;
-}
-#messages > li:nth-child(odd) {
-  background: #efefef;
+#information-header {
+  border-radius: 10px 10px 0px 0px;
+  background-color: #20232a;
+  height: 60px;
 }

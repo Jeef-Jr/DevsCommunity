@@ -135,10 +135,29 @@
   flex-direction: column;
 }
 
-#area_ticket{
+#area_ticket {
   margin-top: 20px;
   border: 4px solid white;
   border-radius: 10px;
   background-color: #adb5bd;
+  margin: 30px;
 }
 
+#area_information {
+  margin-top: 20px;
+  background-color: #282c34;
+  color: white;
+  font-size: 30px;
+  border-radius: 10px;
+  margin: 30px;
+}
+
+#area_information p {
+  margin: 20px;
+}
+
+#information-header {
+  border-radius: 10px 10px 0px 0px;
+  background-color: #20232a;
+  height: 60px;
+}
