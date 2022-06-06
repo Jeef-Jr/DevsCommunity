@@ -1,4 +1,6 @@
 const usuarioModel = require("../models/usuarioModel");
+const bcrypt = require("bcrypt");
+const salts = 10;
 
 async function verifyLogin(req, res) {
   const login = await req.body.login;
@@ -10,42 +12,75 @@ async function verifyLogin(req, res) {
   });
 }
 
-function entrar(req, res) {
-  var email = req.body.emailServer;
-  var senha = req.body.senhaServer;
+async function verifyNickname(req, res) {
+  const nickname = await req.body.nickname;
 
-  if (email == undefined) {
-    res.status(400).send("Seu email está undefined!");
-  } else if (senha == undefined) {
-    res.status(400).send("Sua senha está indefinida!");
-  } else {
-    usuarioModel
-      .entrar(email, senha)
-      .then((resultado) => {
-        console.log(`\nResultados encontrados: ${resultado.length}`);
-        console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+  usuarioModel.verifyNickname(nickname).then((response) => {
+    res.json({
+      response,
+    });
+  });
+}
 
-        if (resultado.length == 1) {
-          console.log(resultado);
-          res.json(resultado[0]);
-        } else if (resultado.length == 0) {
-          res.status(403).send("Email e/ou senha inválido(s)");
-        } else {
-          res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-        }
-      })
-      .catch((erro) => {
-        console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o login! Erro: ",
-          erro.sqlMessage
-        );
-        res.status(500).json(erro.sqlMessage);
+async function cadastrar(req, res) {
+  const nickname = req.body.nickname;
+  const login = req.body.login;
+  const senha = req.body.senha;
+
+  const salt = bcrypt.genSaltSync(salts);
+  const hash = bcrypt.hashSync(senha, salt);
+
+  usuarioModel
+    .cadastrar(nickname, login, hash)
+    .then((response) => {
+      const tamanho = response.affectedRows;
+      if (tamanho > 0) {
+        res.json({
+          mensagem: "success",
+        });
+      } else {
+        res.status(404).json({
+          mensagem: "error",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(JSON.stringify({ error }));
+      res.status(504).json({
+        error,
       });
-  }
+    });
+}
+
+function entrar(req, res) {
+  const login = req.body.login;
+  const senha = req.body.senha;
+
+  usuarioModel.logar(login).then((response) => {
+    const tamanho = response.length;
+    if (tamanho > 0) {
+      const senha_bd = response[0].senha;
+
+      bcrypt.compare(senha, senha_bd, (err, data) => {
+        if (err) throw err;
+        if (data) {
+          res.json({
+            mensagem: "success",
+            dados: response,
+          });
+        } else {
+          res.status(401).json({
+            mensagem: "credencial_invalid",
+          });
+        }
+      });
+    }
+  });
 }
 
 module.exports = {
   entrar,
   verifyLogin,
+  verifyNickname,
+  cadastrar,
 };

@@ -1,44 +1,53 @@
-function verify(campo) {
-  let cumprimentos = document.querySelector(".cumprimentos");
-  document.querySelector(".card-information").style = "display: flex";
+let regra1 = false;
+let regra2 = false;
+let regra3 = false;
+let regra4 = false;
+let regra5 = false;
+
+function verifyCampos(campo) {
+  const campo_nickname = document.querySelector("#campo_nickname").value;
+  const campo_login = document.querySelector("#campo_login").value;
+  const senha = document.querySelector("#senha").value;
+  const confir_senha = document.querySelector("#repsenha").value;
+
+  // c's
+  const c1 = document.querySelector("#c-1");
+  const c2 = document.querySelector("#c-2");
+  const c3 = document.querySelector("#c-3");
+  const c4 = document.querySelector("#c-4");
+  const c5 = document.querySelector("#c-5");
 
   switch (campo) {
-    case 0: {
-      var campo_imagem = document.querySelector("#imagem");
-
-      if (
-        campo_imagem.value.endsWith("png") ||
-        campo_imagem.value.endsWith("jpg") ||
-        campo_imagem.value.endsWith("jpeg")
-      ) {
-        cumprimentos.innerHTML = `
-        <li class='cumprimento_active'>A url da Imagem precisa possuir a extensão entre <br> [.png, .jpg, .jpeg].</li>
-        `;
-      } else {
-        cumprimentos.innerHTML = `
-        <li>A url da imagem precisa possuir a extensão entre <br> [.png, .jpg, .jpeg].</li>
-        `;
-      }
-
-      break;
-    }
     case 1: {
-      let campo_nickname = document.querySelector("#campo_nickname");
+      if (campo_nickname.length >= 3) {
+        fetch(`http://localhost:3333/users/verifyNickname`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nickname: campo_nickname,
+          }),
+        }).then((response) => {
+          response.json().then((data) => {
+            const tamanho = data.response.length;
 
-      if (campo_nickname.value.length >= 3) {
-        cumprimentos.innerHTML = `
-        <li class='cumprimento_active'>O Nickname deve conter no mínimo 3 caractéres.</li>
-            `;
+            if (tamanho > 0) {
+              c2.classList.remove("cumprimento_active");
+              regra1 = false;
+            } else {
+              c2.classList.add("cumprimento_active");
+              regra1 = true;
+            }
+          });
+        });
       } else {
-        cumprimentos.innerHTML = `
-        <li>O Nickname deve conter no mínimo 3 caractéres.</li>
-            `;
+        c2.classList.remove("cumprimento_active");
+        regra1 = false;
       }
       break;
     }
     case 2: {
-      const campo_login = document.querySelector("#campo_login").value;
-
       if (campo_login.length >= 3) {
         fetch(`http://localhost:3333/users/verify`, {
           method: "POST",
@@ -46,40 +55,33 @@ function verify(campo) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            login: value,
+            login: campo_login,
           }),
         }).then((response) => {
           response.json().then((data) => {
             const tamanho = data.response.length;
 
-            if (tamanho == 0) {
-              cumprimentos.innerHTML = `
-                  <li class='cumprimento_active'>O Login deve conter no mínimo 3 caractéres.</li>
-                  <li class='cumprimento_active'>O Login deverá ser único.</li>
-                  `;
+            if (tamanho > 0) {
+              c3.classList.remove("cumprimento_active");
+              regra2 = false;
             } else {
-              cumprimentos.innerHTML = `
-                <li class='cumprimento_active'>O Login deve conter no mínimo 3 caractéres.</li>
-                <li>O Login deverá ser único.</li>
-            `;
+              c3.classList.add("cumprimento_active");
+              regra2 = true;
             }
           });
         });
       } else {
-        cumprimentos.innerHTML = `
-        <li>O Login deve conter no mínimo 3 caractéres.</li>
-        <li>O Login deverá ser único.</li>
-        `;
+        c3.classList.remove("cumprimento_active");
+        regra2 = false;
       }
       break;
     }
     case 3: {
-      const campo_senha = document.querySelector("#senha").value;
-      const interrogacao = campo_senha.indexOf("!");
-      const arroba = campo_senha.indexOf("@");
-      const dollar = campo_senha.indexOf("$");
-      const asteristico = campo_senha.indexOf("*");
-      const Ecommercial = campo_senha.indexOf("&");
+      const interrogacao = senha.indexOf("!");
+      const arroba = senha.indexOf("@");
+      const dollar = senha.indexOf("$");
+      const asteristico = senha.indexOf("*");
+      const Ecommercial = senha.indexOf("&");
 
       if (
         (interrogacao >= 0 ||
@@ -87,33 +89,85 @@ function verify(campo) {
           dollar >= 0 ||
           asteristico >= 0 ||
           Ecommercial >= 0) &&
-        campo_senha.length > 6
+        senha.length >= 3
       ) {
-        cumprimentos.innerHTML = `
-        <li class='cumprimento_active'>A senha possuí caracter especial.</li>
-        <li class='cumprimento_active'>A senha deve possuír 6 ou mais caractéres.</li>
-        `;
+        c4.classList.add("cumprimento_active");
+        regra3 = true;
       } else {
-        cumprimentos.innerHTML = `
-        <li>A senha não possuí caracter especial.</li>
-        <li>A senha deve possuír 6 ou mais caractéres.</li>
-        `;
+        c4.classList.remove("cumprimento_active");
+        regra3 = false;
       }
       break;
     }
     case 4: {
-      const campo_repsenha = document.querySelector("#repsenha").value;
-      const senha = document.querySelector("#senha").value;
-
-      if (campo_repsenha == senha) {
-        cumprimentos.innerHTML = ` 
-        <li class='cumprimento_active'>As senhas deveram ser igualmente.</li>
-        `;
+      if (confir_senha.length >= 3) {
+        if (campo_nickname.length >= 3 && campo_login.length >= 3) {
+          c1.classList.add("cumprimento_active");
+          if (senha == confir_senha) {
+            c5.classList.add("cumprimento_active");
+            regra4 = true;
+          } else {
+            c5.classList.remove("cumprimento_active");
+            regra4 = false;
+          }
+        } else {
+          c1.classList.remove("cumprimento_active");
+          regra4 = false;
+        }
       } else {
-        cumprimentos.innerHTML = ` 
-        <li>As senhas deveram ser igualmente.</li>
-        `;
+        c1.classList.remove("cumprimento_active");
+        regra4 = false;
       }
     }
   }
+}
+
+function verifyBoolean() {
+  if (regra1 && regra2 && regra3 && regra4) {
+    logar();
+  } else {
+    Swal.fire(
+      "Algo incorreto!",
+      "Verifique os campos e as regras necessárias",
+      "error"
+    );
+  }
+}
+
+function logar() {
+  const campo_nickname = document.querySelector("#campo_nickname").value;
+  const campo_login = document.querySelector("#campo_login").value;
+  const senha = document.querySelector("#senha").value;
+
+  fetch("/users/cadastrar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nickname: campo_nickname,
+      login: campo_login,
+      senha,
+    }),
+  }).then((response) => {
+    response.json().then((data) => {
+      const mensagem = data.mensagem;
+
+      if (mensagem == "success") {
+        Swal.fire({
+          title: "Cadastrado com sucesso!",
+          text: "Vamos te redirecionar para o login.",
+          icon: "success",
+          showCancelButton: false,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Okay",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "../login/index.html";
+          }
+        });
+      }
+    });
+  });
 }

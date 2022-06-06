@@ -2,11 +2,29 @@
   display: flex;
   flex-direction: column;
   margin-top: 15%;
-  width: 800px;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 2px 2px 5px #489fb5;
   background-color: #fafafa;
+}
+
+#cardInformation {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+  margin-left: 20px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 2px 2px 5px #489fb5;
+  background-color: #fafafa47;
+}
+
+#cardInformation h2 {
+  color: #ffffff;
+  font-size: 40px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-decoration: underline;
 }
 
 .row {
@@ -40,26 +58,26 @@
   color: #495057;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-}
 .card-information {
-  display: none;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   font-size: 20px;
   width: 400px;
-  height: 100px;
 }
 
 .cumprimento_active {
+  list-style-type: circle;
   text-decoration: line-through;
-  color: #489fb5;
+  color: #15c0eb;
 }
 .cumprimentos {
-  color: #f94144;
+  list-style-type: circle;
+  color: #ffffff;
+}
+
+.cumprimentos li {
+  margin: 5px;
 }
 
 #cardRegister input {
@@ -68,7 +86,8 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
   height: 40px;
-  width: 250px;
+  width: 200px;
+  margin: 10px;
   border-radius: 5px;
   border: 2px solid #adacac;
   transition: all 0.2s;
