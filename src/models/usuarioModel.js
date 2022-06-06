@@ -23,9 +23,15 @@ function logar(login) {
   return database.executar(query);
 }
 
+function buscarInformationUser(iduser) {
+  const query = `SELECT * FROM user WHERE id = '${iduser}'`;
+  return database.executar(query);
+}
+
 module.exports = {
   cadastrar,
   verifyLogin,
   verifyNickname,
   logar,
+  buscarInformationUser,
 };
