@@ -78,9 +78,32 @@ function entrar(req, res) {
   });
 }
 
+function buscarInformationUser(req, res) {
+  const idUser = req.params.id;
+  usuarioModel
+    .buscarInformationUser(idUser)
+    .then((response) => {
+      const tamanho = response.length;
+      if (tamanho > 0) {
+        res.json({
+          response,
+        });
+      } else {
+        res.status(404).json({
+          mensagem: "user_incorret",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(JSON.stringify(error));
+      res.json({ error });
+    });
+}
+
 module.exports = {
   entrar,
   verifyLogin,
   verifyNickname,
+  buscarInformationUser,
   cadastrar,
 };
