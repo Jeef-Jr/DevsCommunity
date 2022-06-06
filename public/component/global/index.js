@@ -7,6 +7,7 @@ function validy_login() {
   const btn1 = document.querySelector("#btn-1");
   const btn2 = document.querySelector("#btn-2");
   if (id > 0) {
+    buscarInformationsUser();
     userNavBar.style.display = "block";
     btn1.style.display = "none";
     btn2.style.display = "block";
@@ -18,7 +19,14 @@ function validy_login() {
 }
 
 function buscarInformationsUser() {
-  // creating fetch informations
+    const nome_user = document.querySelector("#nome_user");
+    fetch(`/users/informations/${id}`)
+    .then((response) => {
+      response.json().then((data) => {
+        const nickname = data.response[0].nickname;
+        nome_user.innerHTML = `Olá, ${nickname}`;
+      })
+    })
 }
 
 function sair() {
