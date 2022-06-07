@@ -188,3 +188,26 @@ function buscarLikesLang(idLang) {
     });
   });
 }
+
+function insertView(idLang) {
+  fetch("/view/insert", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idLang,
+    }),
+  }).then();
+}
+
+function listarQtdView(idLang) {
+  const div_views = document.getElementById("qtd_views");
+
+  fetch(`/view/listar/lang/${idLang}`).then((response) => {
+    response.json().then((data) => {
+      const qtd_views = data.response[0].qtd_views;
+      div_views.innerHTML = qtd_views;
+    });
+  });
+}
