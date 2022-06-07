@@ -10,6 +10,12 @@ function listarViewsLang(idLang) {
   return database.executar(query);
 }
 
+// SELECT YEAR(access) AS ano,
+//     MONTH(access) AS mes,
+//     DAYOFMONTH(access) AS dia,
+//     count(*) AS acessos FROM metrica_view WHERE langs_id = 1 GROUP BY ano, mes, dia
+// ORDER BY acessos DESC;
+
 module.exports = {
   inserirView,
   listarViewsLang,

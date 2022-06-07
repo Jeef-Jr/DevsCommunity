@@ -1,6 +1,83 @@
 const id = sessionStorage.getItem("iduser");
 
 window.onload = validy_login();
+window.onload = plotarGrafico();
+
+function buscarInformation() {}
+
+function plotarGrafico() {
+  const myChart = document.getElementById("myChart");
+
+  var dados = {
+    labels: ["Janeiro", "Fevereiro", "Março", "Abril"],
+    datasets: [
+      {
+        yAxisID: "y-like",
+        label: "Likes",
+        borderColor: "#32b9cd",
+        backgroundColor: "#32b9cd",
+        fill: false,
+        data: [],
+      },
+      {
+        yAxisID: "y-like2",
+        label: "Acessos",
+        borderColor: "#52b788",
+        backgroundColor: "#52b788",
+        fill: false,
+        data: [],
+      },
+    ],
+  };
+
+  dados.datasets[0].data.push(20, 40, 20);
+  dados.datasets[1].data.push(30, 40, 20);
+
+  var ctx = myChart.getContext("2d");
+  window.grafico_linha = Chart.Line(ctx, {
+    data: dados,
+    options: {
+      responsive: true,
+      animation: { duration: 500 },
+      hoverMode: "index",
+      stacked: false,
+      title: {
+        display: true,
+        text: "Total de Likes",
+      },
+      scales: {
+        yAxes: [
+          {
+            type: "linear",
+            display: true,
+            position: "left",
+            id: "y-like",
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0,
+            },
+          },
+          {
+            type: "linear",
+            display: false,
+            position: "right",
+            id: "y-like2",
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0,
+            },
+
+            gridLines: {
+              drawOnChartArea: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+}
 
 function validy_login() {
   const userNavBar = document.querySelector("#user_login");
