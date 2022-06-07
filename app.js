@@ -15,11 +15,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const indexRouter = require("./src/routes/index");
 const usuariosRouter = require("./src/routes/usuarios");
+const likeRouter = require("./src/routes/like");
 
 app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/users", usuariosRouter);
+app.use("/like", likeRouter);
 
 io.on("connection", (socket) => {
   console.log(`socket connection ${socket.id}`);
