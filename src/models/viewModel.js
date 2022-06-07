@@ -10,13 +10,17 @@ function listarViewsLang(idLang) {
   return database.executar(query);
 }
 
-// SELECT YEAR(access) AS ano,
-//     MONTH(access) AS mes,
-//     DAYOFMONTH(access) AS dia,
-//     count(*) AS acessos FROM metrica_view WHERE langs_id = 1 GROUP BY ano, mes, dia
-// ORDER BY acessos DESC;
+function listarAcessosLang(idLang){
+  const query = `
+  SELECT COUNT(langs_id) AS 'qtd_view' FROM metrica_view WHERE langs_id = ${idLang};
+  `
+
+  return database.executar(query)
+}
+
 
 module.exports = {
   inserirView,
   listarViewsLang,
+  listarAcessosLang
 };
