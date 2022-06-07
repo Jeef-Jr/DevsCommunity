@@ -47,9 +47,23 @@ CREATE TABLE IF NOT EXISTS `metrica_like` (
   CONSTRAINT `metrica_like_ibfk_2` FOREIGN KEY (`langs_id`) REFERENCES `langs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela devs.metrica_like: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela devs.metrica_like: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `metrica_like` DISABLE KEYS */;
 /*!40000 ALTER TABLE `metrica_like` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela devs.metrica_view
+CREATE TABLE IF NOT EXISTS `metrica_view` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `langs_id` int(11) DEFAULT NULL,
+  `access` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `langs_id` (`langs_id`),
+  CONSTRAINT `metrica_view_ibfk_1` FOREIGN KEY (`langs_id`) REFERENCES `langs` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela devs.metrica_view: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `metrica_view` DISABLE KEYS */;
+/*!40000 ALTER TABLE `metrica_view` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela devs.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -60,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela devs.user: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela devs.user: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
