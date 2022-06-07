@@ -18,6 +18,10 @@ function listarAcessosLang(idLang){
   return database.executar(query)
 }
 
+// SELECT DISTINCT(COUNT(MV.langs_id)) AS "qtd_acessos", L.nome, DATE_FORMAT(access, "%d/%m/%Y") AS 'date' 
+// FROM metrica_view AS MV JOIN langs AS L 
+// ON MV.langs_id = L.id GROUP BY MV.langs_id, DATE ORDER BY DATE DESC
+
 
 module.exports = {
   inserirView,
