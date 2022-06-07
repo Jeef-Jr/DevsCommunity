@@ -1,3 +1,4 @@
+const { json } = require("express/lib/response");
 const likeModel = require("../models/likeModel");
 
 function darLike(req, res) {
@@ -72,8 +73,34 @@ function buscarLikesLang(req, res) {
     });
 }
 
+function likesLang(req, res) {
+  const idLang = req.params.idLang;
+
+  likeModel.likesLang(idLang).then((response) => {
+    const tamanho = response.length;
+
+
+    if(tamanho > 0){
+      res.json({
+        response
+      })
+    }else {
+      res.status(400).json({
+        mensagem: "like_found"
+      })
+    }
+  }).catch((error) => {
+    console.log(JSON.stringify({ error }));
+    res.status(500).json({
+      error,
+    });
+  });
+
+}
+
 module.exports = {
   darLike,
   listarLike,
   buscarLikesLang,
+  likesLang
 };
