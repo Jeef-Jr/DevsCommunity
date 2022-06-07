@@ -48,7 +48,7 @@ function darLike(idLang) {
       const mensagem = data.mensagem;
 
       if (mensagem == "success") {
-        console.log("entrou");
+        listarLike(idLang);
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",
@@ -113,9 +113,46 @@ function darLike(idLang) {
             break;
           }
         }
+      } else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        Toast.fire({
+          icon: "error",
+          title: "Você não pode descurti! Sinto muito... 😵‍💫",
+        });
       }
     });
   });
 }
 
-function listarLike(idLang) {}
+function listarLike(idLang) {
+  const iconHeart = document.getElementById("heart");
+
+  fetch("/like/listar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idUser: id,
+      idLang,
+    }),
+  }).then((response) => {
+    response.json().then((data) => {
+      const mensagem = data.mensagem;
+
+      if (mensagem == "success") {
+        iconHeart.style.color = "red";
+      }
+    });
+  });
+}

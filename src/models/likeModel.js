@@ -5,6 +5,12 @@ function darLike(idUser, idLang) {
   return database.executar(query);
 }
 
+function listarLike(idUser, idLang) {
+  const query = `SELECT langs_id FROM metrica_like WHERE user_id = ${idUser} AND langs_id = ${idLang}`;
+  return database.executar(query);
+}
+
 module.exports = {
   darLike,
+  listarLike,
 };
