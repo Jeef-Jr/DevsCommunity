@@ -58,7 +58,19 @@
 
 <script>
   window.onload = plotarGrafico();
-  window.onload = plotarGrafico2();
+  window.onload = totalViews();
+
+
+
+  function totalViews(){
+    fetch("/view/listar/todos").then((response) => {
+      response.json().then((data) => {
+        const dados = data.response;
+        plotarGrafico2(dados);
+      })
+    })
+  }
+
 
   function plotarGrafico() {
     var dados = {
@@ -252,7 +264,7 @@
     });
   }
 
-  function plotarGrafico2() {
+  function plotarGrafico2(response) {
     var dados = {
       labels: ["Acessos"],
       datasets: [
@@ -315,13 +327,15 @@
       ],
     };
 
-    dados.datasets[0].data.push(20);
-    dados.datasets[1].data.push(30);
-    dados.datasets[2].data.push(40);
-    dados.datasets[3].data.push(10);
-    dados.datasets[4].data.push(5);
-    dados.datasets[5].data.push(20);
-    dados.datasets[6].data.push(10);
+    console.log(response);
+
+    dados.datasets[0].data.push(response[0].qtd_acessos > 0 ? response[0].qtd_acessos : 0);
+    dados.datasets[1].data.push(response[1].qtd_acessos > 0 ? response[1].qtd_acessos : 0);
+    dados.datasets[2].data.push(response[2].qtd_acessos > 0 ? response[2].qtd_acessos : 0);
+    dados.datasets[3].data.push(response[3].qtd_acessos > 0 ? response[3].qtd_acessos : 0);
+    dados.datasets[4].data.push(response[4].qtd_acessos > 0 ? response[4].qtd_acessos : 0);
+    dados.datasets[5].data.push(response[5].qtd_acessos > 0 ? response[5].qtd_acessos : 0);
+    dados.datasets[6].data.push(response[6].qtd_acessos > 0 ? response[6].qtd_acessos : 0);
 
     var ctx = graficoDados2.getContext("2d");
     window.grafico_linha = Chart.Bar(ctx, {
@@ -344,7 +358,7 @@
               id: "y-like",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
             },
@@ -355,7 +369,7 @@
               id: "y-like2",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
 
@@ -370,7 +384,7 @@
               id: "y-like3",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
 
@@ -385,7 +399,7 @@
               id: "y-like4",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
 
@@ -400,7 +414,7 @@
               id: "y-like5",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
 
@@ -415,7 +429,7 @@
               id: "y-like6",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
 
@@ -430,7 +444,7 @@
               id: "y-like7",
               ticks: {
                 beginAtZero: true,
-                max: 100,
+                max: 500,
                 min: 0,
               },
 
