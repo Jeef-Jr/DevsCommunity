@@ -10,7 +10,13 @@ function listarLike(idUser, idLang) {
   return database.executar(query);
 }
 
+function listarLikesTotaisLang(idLang) {
+  const query = `SELECT COUNT(langs_id) AS 'qtd_like' FROM metrica_like WHERE langs_id = ${idLang}`;
+  return database.executar(query);
+}
+
 module.exports = {
   darLike,
   listarLike,
+  listarLikesTotaisLang,
 };

@@ -46,7 +46,34 @@ function listarLike(req, res) {
     });
 }
 
+function buscarLikesLang(req, res) {
+  const idLang = req.params.idLang;
+
+  likeModel
+    .listarLikesTotaisLang(idLang)
+    .then((response) => {
+      const tamanho = response.length;
+
+      if (tamanho > 0) {
+        res.json({
+          response,
+        });
+      } else {
+        res.json({
+          mensagem: "error",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(JSON.stringify({ error }));
+      res.status(500).json({
+        error,
+      });
+    });
+}
+
 module.exports = {
   darLike,
   listarLike,
+  buscarLikesLang,
 };

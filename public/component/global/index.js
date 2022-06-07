@@ -50,6 +50,8 @@ function darLike(idLang) {
 
         if (mensagem == "success") {
           listarLike(idLang);
+          buscarLikesLang(idLang);
+
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -171,6 +173,18 @@ function listarLike(idLang) {
       if (mensagem == "success") {
         iconHeart.style.color = "red";
       }
+    });
+  });
+}
+
+function buscarLikesLang(idLang) {
+  const qtd_likes = document.getElementById("qtd_likes");
+
+  fetch(`/like/lang/${idLang}`).then((response) => {
+    response.json().then((data) => {
+      const qtd = data.response[0].qtd_like;
+
+      qtd_likes.innerHTML = qtd;
     });
   });
 }
