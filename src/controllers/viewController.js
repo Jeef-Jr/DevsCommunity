@@ -61,8 +61,32 @@ function listarAcessosLang(req, res) {
   });
 }
 
+function listarTodosViews(req, res){
+
+  viewModel.listarTodosViews().then((response) => {
+    const tamanho = response.length;
+
+    if(tamanho > 0){
+      res.json({
+        response
+      })
+    }else {
+      res.json({
+        response: "error"
+      })
+    }
+  }).catch((error) => {
+    console.log(JSON.stringify({ error }));
+    res.status(500).json({
+      error,
+    });
+  });
+}
+
+
 module.exports = {
   insertView,
   listarViewsLang,
+  listarTodosViews,
   listarAcessosLang 
 };
