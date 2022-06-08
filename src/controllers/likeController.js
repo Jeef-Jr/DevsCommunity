@@ -76,31 +76,56 @@ function buscarLikesLang(req, res) {
 function likesLang(req, res) {
   const idLang = req.params.idLang;
 
-  likeModel.likesLang(idLang).then((response) => {
-    const tamanho = response.length;
+  likeModel
+    .likesLang(idLang)
+    .then((response) => {
+      const tamanho = response.length;
 
-
-    if(tamanho > 0){
-      res.json({
-        response
-      })
-    }else {
-      res.status(400).json({
-        mensagem: "like_found"
-      })
-    }
-  }).catch((error) => {
-    console.log(JSON.stringify({ error }));
-    res.status(500).json({
-      error,
+      if (tamanho > 0) {
+        res.json({
+          response,
+        });
+      } else {
+        res.status(400).json({
+          mensagem: "like_found",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(JSON.stringify({ error }));
+      res.status(500).json({
+        error,
+      });
     });
-  });
+}
 
+function totalLikes(req, res) {
+  likeModel
+    .totalLikes()
+    .then((response) => {
+      const tamanho = response.length;
+      if (tamanho > 0) {
+        res.json({
+          response,
+        });
+      } else {
+        res.json({
+          mensagem: "i_not_found",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(JSON.stringify({ error }));
+      res.status(500).json({
+        error,
+      });
+    });
 }
 
 module.exports = {
   darLike,
   listarLike,
   buscarLikesLang,
-  likesLang
+  totalLikes,
+  likesLang,
 };

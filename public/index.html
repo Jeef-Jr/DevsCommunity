@@ -57,24 +57,31 @@
 <script src="./component/Catalago/index.js"></script>
 
 <script>
-  window.onload = plotarGrafico();
+  window.onload = totalLikes();
   window.onload = totalViews();
 
-
-
-  function totalViews(){
+  function totalViews() {
     fetch("/view/listar/todos").then((response) => {
       response.json().then((data) => {
         const dados = data.response;
         plotarGrafico2(dados);
-      })
-    })
+      });
+    });
   }
 
+  function totalLikes() {
+    fetch("/like/total").then((response) => {
+      response.json().then((data) => {
+        const dados = data.response;
+        plotarGrafico(dados);
+      });
+    });
+  }
 
-  function plotarGrafico() {
+  function plotarGrafico(response) {
     var dados = {
-      labels: ["Janeiro", "Fevereiro", "Março", "Abril"],
+      labels: ["Total de Likes"],
+
       datasets: [
         {
           yAxisID: "y-like",
@@ -135,16 +142,41 @@
       ],
     };
 
-    dados.datasets[0].data.push(20, 40, 20);
-    dados.datasets[1].data.push(30, 40, 20);
-    dados.datasets[2].data.push(40, 40, 40);
-    dados.datasets[3].data.push(10, 45, 60);
-    dados.datasets[4].data.push(5, 40, 30);
-    dados.datasets[5].data.push(20, 80, 20);
-    dados.datasets[6].data.push(10, 40, 70);
+    for (let i = 0; i < response.length; i++) {
+      switch (response[i].nome) {
+        case "React": {
+          dados.datasets[0].data.push(response[i].qtd_like);
+          break;
+        }
+        case "NodeJs": {
+          dados.datasets[1].data.push(response[i].qtd_like);
+          break;
+        }
+        case "PHP7": {
+          dados.datasets[2].data.push(response[i].qtd_like);
+          break;
+        }
+        case "Java": {
+          dados.datasets[3].data.push(response[i].qtd_like);
+          break;
+        }
+        case "Python": {
+          dados.datasets[4].data.push(response[i].qtd_like);
+          break;
+        }
+        case "Flutter": {
+          dados.datasets[4].data.push(response[i].qtd_like);
+          break;
+        }
+        case "Dart": {
+          dados.datasets[4].data.push(response[i].qtd_like);
+          break;
+        }
+      }
+    }
 
     var ctx = graficoDados1.getContext("2d");
-    window.grafico_linha = Chart.Line(ctx, {
+    window.grafico_linha = Chart.Bar(ctx, {
       data: dados,
       options: {
         responsive: true,
@@ -327,15 +359,27 @@
       ],
     };
 
-    console.log(response);
-
-    dados.datasets[0].data.push(response[0].qtd_acessos > 0 ? response[0].qtd_acessos : 0);
-    dados.datasets[1].data.push(response[1].qtd_acessos > 0 ? response[1].qtd_acessos : 0);
-    dados.datasets[2].data.push(response[2].qtd_acessos > 0 ? response[2].qtd_acessos : 0);
-    dados.datasets[3].data.push(response[3].qtd_acessos > 0 ? response[3].qtd_acessos : 0);
-    dados.datasets[4].data.push(response[4].qtd_acessos > 0 ? response[4].qtd_acessos : 0);
-    dados.datasets[5].data.push(response[5].qtd_acessos > 0 ? response[5].qtd_acessos : 0);
-    dados.datasets[6].data.push(response[6].qtd_acessos > 0 ? response[6].qtd_acessos : 0);
+    dados.datasets[0].data.push(
+      response[0].qtd_acessos > 0 ? response[0].qtd_acessos : 0
+    );
+    dados.datasets[1].data.push(
+      response[1].qtd_acessos > 0 ? response[1].qtd_acessos : 0
+    );
+    dados.datasets[2].data.push(
+      response[2].qtd_acessos > 0 ? response[2].qtd_acessos : 0
+    );
+    dados.datasets[3].data.push(
+      response[3].qtd_acessos > 0 ? response[3].qtd_acessos : 0
+    );
+    dados.datasets[4].data.push(
+      response[4].qtd_acessos > 0 ? response[4].qtd_acessos : 0
+    );
+    dados.datasets[5].data.push(
+      response[5].qtd_acessos > 0 ? response[5].qtd_acessos : 0
+    );
+    dados.datasets[6].data.push(
+      response[6].qtd_acessos > 0 ? response[6].qtd_acessos : 0
+    );
 
     var ctx = graficoDados2.getContext("2d");
     window.grafico_linha = Chart.Bar(ctx, {

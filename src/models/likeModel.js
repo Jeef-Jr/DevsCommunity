@@ -15,17 +15,24 @@ function listarLikesTotaisLang(idLang) {
   return database.executar(query);
 }
 
-function likesLang(idLang){
+function likesLang(idLang) {
   const query = `
   SELECT COUNT(langs_id) AS 'qtd_like' FROM metrica_like WHERE langs_id = ${idLang}
-  `
+  `;
+  return database.executar(query);
+}
 
-  return database.executar(query)
+function totalLikes() {
+  const query = `SELECT COUNT(langs_id) AS 'qtd_like', L.nome, access FROM metrica_like AS ML JOIN langs AS L 
+  ON ML.langs_id = L.id
+  GROUP BY L.nome ORDER BY access ASC LIMIT 7`;
+  return database.executar(query);
 }
 
 module.exports = {
   darLike,
   listarLike,
   likesLang,
+  totalLikes,
   listarLikesTotaisLang,
 };
