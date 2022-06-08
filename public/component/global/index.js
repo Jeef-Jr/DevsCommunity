@@ -2,26 +2,22 @@ const id = sessionStorage.getItem("iduser");
 
 window.onload = validy_login();
 
-
-
 function acessosView(idLang) {
-  fetch(`/view/listar/acessos/${idLang}`)
-  .then((response) => {
+  fetch(`/view/listar/acessos/${idLang}`).then((response) => {
     response.json().then((data) => {
       const dados = data.response;
       likesLang(idLang, dados);
-    })
-  })
+    });
+  });
 }
 
-function likesLang(idLang, dadosAcessos){
-  fetch(`/like/likes/lang/${idLang}`)
-  .then((response) => {
+function likesLang(idLang, dadosAcessos) {
+  fetch(`/like/likes/lang/${idLang}`).then((response) => {
     response.json().then((data) => {
       const dados = data.response;
       plotarGrafico(dados, dadosAcessos);
-    })
-  })
+    });
+  });
 }
 
 function plotarGrafico(dadosLike, dadosAcessos) {
@@ -30,63 +26,65 @@ function plotarGrafico(dadosLike, dadosAcessos) {
   var dados = {
     labels: ["Dados Relevantes"],
     datasets: [
-        {
-            yAxisID: 'y-temperatura',
-            label: 'Likes',
-            borderColor: '#0096c7',
-            backgroundColor: '#0096c7',
-            fill: false,
-            data: [dadosLike[0].qtd_like]
-        },
-        {
-            yAxisID: 'y-temperatura',
-            label: 'Acessos',
-            borderColor: '#65b891',
-            backgroundColor: '#65b891',
-            fill: false,
-            data: [dadosAcessos[0].qtd_view]
-        },
-    ]
-};
+      {
+        yAxisID: "y-temperatura",
+        label: "Likes",
+        borderColor: "#0096c7",
+        backgroundColor: "#0096c7",
+        fill: false,
+        data: [dadosLike[0].qtd_like],
+      },
+      {
+        yAxisID: "y-temperatura",
+        label: "Acessos",
+        borderColor: "#65b891",
+        backgroundColor: "#65b891",
+        fill: false,
+        data: [dadosAcessos[0].qtd_view],
+      },
+    ],
+  };
 
-var ctx = myChart.getContext('2d');
-window.grafico_bar = Chart.Bar(ctx, {
+  var ctx = myChart.getContext("2d");
+  window.grafico_bar = Chart.Bar(ctx, {
     data: dados,
     options: {
-        responsive: true,
-        animation: { duration: 500 },
-        hoverMode: 'index',
-        stacked: false,
-        title: {
-            display: false,
-            text: 'Dados capturados'
-        },
-        scales: {
-            yAxes: [{
-                type: 'linear',
-                display: true,
-                position: 'left',
-                id: 'y-temperatura',
-                ticks: {
-                    beginAtZero: true,
-                    max: 100,
-                    min: 0
-                }
-            }, {
-                type: 'linear',
-                display: false,
-                position: 'right',
-                id: 'y-umidade',
-                ticks: {
-                    beginAtZero: true,
-                    max: 100,
-                    min: 0
-                }
+      responsive: true,
+      animation: { duration: 500 },
+      hoverMode: "index",
+      stacked: false,
+      title: {
+        display: false,
+        text: "Dados capturados",
+      },
+      scales: {
+        yAxes: [
+          {
+            type: "linear",
+            display: true,
+            position: "left",
+            id: "y-temperatura",
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0,
             },
-           ],
-        }
-    }
-});
+          },
+          {
+            type: "linear",
+            display: false,
+            position: "right",
+            id: "y-umidade",
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0,
+            },
+          },
+        ],
+      },
+    },
+  });
 }
 
 function validy_login() {
@@ -110,6 +108,7 @@ function buscarInformationsUser() {
   fetch(`/users/informations/${id}`).then((response) => {
     response.json().then((data) => {
       const nickname = data.response[0].nickname;
+      sessionStorage.setItem("nick", nickname);
       nome_user.innerHTML = `Olá, ${nickname}`;
     });
   });
@@ -299,6 +298,6 @@ function listarQtdView(idLang) {
   });
 
   setTimeout(() => {
-    listarQtdView(idLang)
+    listarQtdView(idLang);
   }, 2000);
 }

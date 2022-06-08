@@ -34,7 +34,8 @@ function listarTickets(idLang) {
     response.json().then((data) => {
       const dados = data.response;
 
-      console.log(dados);
+      div_tickets.innerHTML = "";
+
       for (let i = 0; i < dados.length; i++) {
         let dif = dados[i].dificuldade;
         let nick = dados[i].nickname;

@@ -1,5 +1,5 @@
 var socket = io("http://localhost:3333");
-
+const nick = sessionStorage.getItem("nick");
 var messages = document.getElementById("messages");
 var form = document.getElementById("form");
 var input = document.getElementById("input");
@@ -11,7 +11,7 @@ objDiv.scrollTop = objDiv.scrollHeight;
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   if (input.value) {
-    socket.emit("chat message", input.value, username.value);
+    socket.emit("chat message", input.value, nick);
     input.value = "";
   }
 });
@@ -20,7 +20,6 @@ socket.on("chat message", function (msg, user) {
   var item = document.createElement("li");
 
   item.innerHTML = `
-  <img class="icon_user" src="../../../assets/User_icon.png" alt="">
   ${user} |
   ${msg}`;
   messages.appendChild(item);

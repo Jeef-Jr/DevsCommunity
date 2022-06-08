@@ -14,7 +14,6 @@ async function verifyLogin(req, res) {
 
 async function verifyNickname(req, res) {
   const nickname = await req.body.nickname;
-
   usuarioModel.verifyNickname(nickname).then((response) => {
     res.json({
       response,

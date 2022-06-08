@@ -95,3 +95,12 @@
 #chatLang {
   display: none;
 }
+
+.menu a {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+.menu a:hover {
+  color: white;
+}
