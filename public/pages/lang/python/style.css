@@ -113,23 +113,6 @@
   width: 80%;
 }
 
-.tickets {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-}
-
-.ticket {
-  margin: 10px;
-  background-color: #ced4da;
-  width: 300px;
-  height: 100px;
-  border-radius: 10px;
-}
-
 .column {
   display: flex;
   flex-direction: column;

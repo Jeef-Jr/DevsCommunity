@@ -17,6 +17,7 @@ const indexRouter = require("./src/routes/index");
 const usuariosRouter = require("./src/routes/usuarios");
 const likeRouter = require("./src/routes/like");
 const viewRouter = require("./src/routes/view");
+const ticketRouter = require("./src/routes/ticket");
 
 app.use(cors());
 
@@ -24,6 +25,7 @@ app.use("/", indexRouter);
 app.use("/users", usuariosRouter);
 app.use("/like", likeRouter);
 app.use("/view", viewRouter);
+app.use("/ticket", ticketRouter);
 
 io.on("connection", (socket) => {
   console.log(`socket connection ${socket.id}`);
