@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../component/Header/style.css" />
     <link rel="stylesheet" href="../../../component/Catalago/style.css" />
     <link rel="stylesheet" href="../../../component/Chat/style.css" />
+    <link rel="stylesheet" href="../../../component/FormTicket/style.css" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       type="text/javascript"
@@ -106,18 +107,42 @@
         </div>
         <div id="area_ticket">
           <div class="menu">
-            <button
-              class="button-active"
-              onclick="mostrarBtpTicket(1)"
-              id="NewTicket"
-            >
+            <button class="button" onclick="mostrarBtpTicket(1)" id="NewTicket">
               <i class="fa-solid fa-ticket"></i> Novo Ticket
             </button>
-            <button id="BatePapo" onclick="mostrarBtpTicket(2)">
+            <button
+              class="button-active"
+              onclick="mostrarBtpTicket(2)"
+              id="TicketsAll"
+            >
+              <i class="fa-solid fa-ticket"></i> Ticket's
+            </button>
+            <button id="BatePapo" onclick="mostrarBtpTicket(3)">
               <i class="fa-solid fa-comments"></i> BATE PAPO
             </button>
           </div>
           <div id="tickets">
+            <div id="form-ticket">
+              <div class="campo_ticket">
+                <span>Dificuldade:</span>
+                <select name="" id="">
+                  <option value="">Fácil</option>
+                  <option value="">Média</option>
+                  <option value="">Difícil</option>
+                </select>
+              </div>
+              <div>
+                <textarea
+                  name=""
+                  id=""
+                  rows="6"
+                  placeholder="Digite o seu problema..."
+                ></textarea>
+              </div>
+              <div>
+                <button>Enviar</button>
+              </div>
+            </div>
             <div class="tickets">
               <div class="ticket"></div>
               <div class="ticket"></div>

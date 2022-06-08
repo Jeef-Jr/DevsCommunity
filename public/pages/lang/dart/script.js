@@ -23,23 +23,38 @@ function mostrarComunidade(n) {
 
 function mostrarBtpTicket(key) {
   const chatLang = document.querySelector("#chatLang");
-  const tickets = document.querySelector("#tickets");
+  const myTicket = document.querySelector("#form-ticket");
+  const tickets = document.querySelector(".tickets");
 
   const NewTicket = document.querySelector("#NewTicket");
+  const TicketsAll = document.querySelector("#TicketsAll");
   const ButtonBtp = document.querySelector("#BatePapo");
 
   switch (key) {
     case 1: {
+      tickets.style.display = "none";
       chatLang.style.display = "none";
-      tickets.style.display = "flex";
+      myTicket.style.display = "flex";
       ButtonBtp.classList.remove("button-active");
+      TicketsAll.classList.remove("button-active");
       NewTicket.classList.add("button-active");
       break;
     }
     case 2: {
+      chatLang.style.display = "none";
+      tickets.style.display = "flex";
+      myTicket.style.display = "none";
+      ButtonBtp.classList.remove("button-active");
+      NewTicket.classList.remove("button-active");
+      TicketsAll.classList.add("button-active");
+      break;
+    }
+    case 3: {
       chatLang.style.display = "flex";
       tickets.style.display = "none";
+      myTicket.style.display = "none";
       NewTicket.classList.remove("button-active");
+      TicketsAll.classList.remove("button-active");
       ButtonBtp.classList.add("button-active");
       break;
     }
