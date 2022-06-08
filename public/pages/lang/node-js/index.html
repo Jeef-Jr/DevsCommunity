@@ -123,36 +123,25 @@
             <div id="form-ticket">
               <div class="campo_ticket">
                 <span>Dificuldade:</span>
-                <select name="" id="">
-                  <option value="">Fácil</option>
-                  <option value="">Média</option>
-                  <option value="">Difícil</option>
+                <select name="" id="dificuldade">
+                  <option value="1">Fácil</option>
+                  <option value="2">Média</option>
+                  <option value="3">Difícil</option>
                 </select>
               </div>
               <div>
                 <textarea
                   name=""
-                  id=""
+                  id="descricao"
                   rows="6"
                   placeholder="Digite o seu problema..."
                 ></textarea>
               </div>
               <div>
-                <button>Enviar</button>
+                <button onclick="enviarTicket(2)">Enviar</button>
               </div>
             </div>
-            <div class="tickets">
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-              <div class="ticket"></div>
-            </div>
+            <div class="tickets"></div>
           </div>
           <div class="center-chat" id="chatLang">
             <div class="chat">
@@ -176,6 +165,7 @@
 </html>
 <script src="../../../component/global/index.js"></script>
 <script src="../../../component/Catalago/index.js"></script>
+<script src="../../../component/FormTicket/script.js"></script>
 <script src="./script.js"></script>
 <script>
   window.onload = listarLike(2);
